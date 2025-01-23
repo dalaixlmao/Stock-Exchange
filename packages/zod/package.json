@@ -1,12 +1,21 @@
 {
-  "name": "zod",
+  "name": "@repo/zod",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "src/index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^22.10.10",
+    "@types/winston": "^2.4.4",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "typescript": "latest"
+  },
+  "exports": {
+    "./src": "./src/index.js"
+  }
 }

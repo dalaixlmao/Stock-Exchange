@@ -1,0 +1,21 @@
+{
+  "name": "@repo/logger",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^22.10.9",
+    "@types/winston": "^2.4.4",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "typescript": "latest"
+  },
+  "exports": {
+    "./src": "./src/index.js"
+  }
+}

@@ -1,13 +1,20 @@
+import winston from "winston";
+
 class Logger {
+  private __logger: winston.Logger;
+
   private static instance: Logger | null = null;
 
-  private constructor() {}
-
-  public static getInstance(): Logger {
-    if (!Logger.instance) {
-      Logger.instance = new Logger();
-    }
-    return Logger.instance;
+  private constructor() {
+    this.__logger = winston.createLogger({
+      level: "info",
+      format: winston.format.json(),
+      defaultMeta: { service: "user-service" },
+      transports: [
+        new winston.transports.File({ filename: "error.log", level: "error" }),
+        new winston.transports.File({ filename: "combined.log" }),
+      ],
+    });
   }
 
   public log(type: string, message: string): void {
@@ -15,7 +22,7 @@ class Logger {
       "\n-----------------------------------------------------------------"
     );
     console.log(
-      type,
+      `[${type}]`,
       "[",
       new Date(new Date().getTime() + 330 * 1000 * 60).toISOString(),
       "]",
@@ -27,16 +34,28 @@ class Logger {
     );
   }
 
+  public static getInstance(): Logger {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
+    }
+    return Logger.instance;
+  }
+
   public info(message: string): void {
-    this.log("[INF]", message);
+    this.log("INF", message);
+    this.__logger.info(message);
   }
 
   public error(message: string): void {
-    this.log("[ERR]", message);
+    this.log("ERR", message);
+
+    this.__logger.error(message);
   }
 
   public warn(message: string): void {
-    this.log("[WAR]", message);
+    this.log("WAR", message);
+
+    this.__logger.error(message);
   }
 }
 

@@ -14,6 +14,7 @@ export class ExpressApp {
     this.__logger = Logger.getInstance();
     this.__app.use(cors());
     this.__app.route("/api/v1/users");
+    this.__app.use(express.json());
   }
 
   public listen(port: number): void {

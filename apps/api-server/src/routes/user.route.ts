@@ -1,5 +1,6 @@
 import RouteInterface from "./interface.route";
 import { Method, Route } from "../types";
+import { Request, Response } from "express";
 
 class UserRoute extends RouteInterface {
   constructor() {

@@ -1,2 +1,37 @@
 {"level":"info","message":"Server is running on port 3002","service":"user-service"}
 {"level":"info","message":"Server is running on port 3002","service":"user-service"}
+{"level":"info","message":"Server is running on port 3002","service":"user-service"}
+{"level":"info","message":"Server is running on port 3002","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"Server is running on port 3002","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Posrt 3002 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"Started server on port 3003","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Posrt 3002 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Posrt 3003 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"Started server on port 3004","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /login","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3002 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3003 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3004 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"Started server on port 3005","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /login","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3002 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3003 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3004 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3005 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"Started server on port 3006","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /signup","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"New 1 route API created, on /login","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3002 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3003 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3004 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3005 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"error","message":"Port 3006 is busy!","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}
+{"level":"info","message":"Started server on port 3007","service":"F:\\Projects\\stock-exchange\\exchange\\packages\\logger\\src\\index.js"}

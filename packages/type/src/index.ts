@@ -21,6 +21,14 @@ const temp: ZodSchema = new ZodSchema();
 type userSignupType = zod.infer<typeof temp.userSignupSchema>;
 type userLoginType = zod.infer<typeof temp.userLoginSchema>;
 type orderType = zod.infer<typeof temp.orderSchema>;
+interface userType {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  balance: number;
+}
 
 export default ZodSchema;
-export type { userLoginType, userSignupType, orderType };
+export type { userLoginType, userSignupType, orderType, userType };

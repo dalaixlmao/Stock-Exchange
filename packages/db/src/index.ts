@@ -1,11 +1,17 @@
-import Redis, { RedisKey } from "ioredis";
-import { RedisClient } from "ioredis/built/connectors/SentinelConnector/types";
+import Redis from "ioredis";
 
 class DB {
   private __db: Redis;
 
-  constructor() {
+  private static __instance: DB | null = null;
+
+  private constructor() {
     this.__db = new Redis();
+  }
+
+  static getInstance() {
+    if (!this.__instance) this.__instance = new DB();
+    return this.__instance;
   }
 
   async get(key: string) {
@@ -21,6 +27,5 @@ class DB {
     return await this.__db.set(key, value);
   }
 }
-
 
 export default DB;

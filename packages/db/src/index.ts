@@ -1,92 +1,48 @@
-import Redis from "ioredis";
 import Logger from "@repo/logger/src";
-import * as ZodTypes from "@repo/type/src";
+import User from "./models/user";
 
 class DB {
-  protected __db: Redis;
-  protected __logger: Logger;
+  private static __user: Map<number, User> = new Map<number, User>();
+  private static __userEmailIndex: Map<string, number> = new Map<
+    string,
+    number
+  >();
 
-  constructor() {
-    this.__db = new Redis();
+  private static __db: DB | null = null;
+  private __logger: Logger;
+  private constructor() {
     this.__logger = Logger.getInstance();
   }
-  async get(key: string) {
-    return await this.__db.get(key);
-  }
-  async validate(key: string) {
-    const check = await this.__db.get(key);
-    if (check) return true;
-    return false;
+
+  static getInstance() {
+    if (!this.__db) this.__db = new DB();
+    return this.__db;
   }
 
-  async set(key: string, value: any) {
-    return await this.__db.set(key, value);
+  createUser(name: string, email: string, password: string) {
+    const id = new Date().getTime();
+    const newUser = new User(id, name, email, password);
+    DB.__user.set(id, newUser);
+    DB.__userEmailIndex.set(email, id);
+    this.__logger.info(
+      `User created id${id}, name${name}, email${name}, balance${newUser.getBalance()}`
+    );
+    return id;
+  }
+
+  getUser(id: number) {
+    return DB.__user.get(id) || null;
+  }
+
+  getUserByEmail(email: string) {
+    const userId = DB.__userEmailIndex.get(email);
+    if (userId) return DB.__user.get(userId) || null;
+    return null;
+  }
+
+  validateUser(id: number) {
+    return DB.__user.has(id);
   }
 }
 
-class UserDB extends DB {
-    private static instance: UserDB | null = null;
-  
-    private constructor() {
-      super();
-    }
-  
-    static getInstance() {
-      if (!this.instance) this.instance = new UserDB();
-      return this.instance;
-    }
-  
-    async createUser(name: string, email: string, password: string) {
-      const id = new Date().getTime();
-  
-      await this.__db.hset(`user:${id}`, {
-        id,
-        name,
-        email,
-        password,
-        balance: 1000000,
-        createdAt: new Date().toISOString(),
-      });
-      await this.__db.set(`index:user:email:${email}`, id.toString());
-      return id;
-    }
-  
-    async getUser(id: number): Promise<ZodTypes.userType | null> {
-      const user = await this.__db.hgetall(`user:${id}`);
-      if (Object.keys(user).length === 0) return null;
-  
-      return {
-        id: parseInt(user.id),
-        name: user.name,
-        email: user.email,
-        password: user.password,
-        balance: parseFloat(user.balance),
-        createdAt: new Date(user.createdAt),
-      } as ZodTypes.userType;
-    }
-  
-    async validateUser(id: number): Promise<boolean> {
-      const exists = await this.__db.exists(`user:${id}`);
-      return exists > 0;
-    }
-  
-    async getUserByEmail(email: string): Promise<ZodTypes.userType | null> {
-      const id = await this.__db.get(`index:user:email:${email}`);
-      if (!id) throw new Error(`User with email ${email} not found`);
-  
-      const user = await this.__db.hgetall(`user:${id}`);
-      if (Object.keys(user).length === 0) throw new Error(`User with ID ${id} not found`);
-  
-      return {
-        id: parseInt(user.id),
-        name: user.name,
-        email: user.email,
-        password: user.password,
-        balance: parseFloat(user.balance),
-        createdAt: new Date(user.createdAt),
-      } as ZodTypes.userType;
-    }
-  }
-  
-
-export default UserDB;
+export default DB;

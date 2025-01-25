@@ -12,7 +12,7 @@ class ValidationMiddleware {
   validateSignupRequest(req: Request, res: Response, next: NextFunction) {
     const body = req.body;
     const check = this.__validator.validate(
-      this.__validator.userSignupSchema,
+      ZodType.default.userSignupSchema,
       body
     );
     if (check) {
@@ -25,13 +25,25 @@ class ValidationMiddleware {
   validateLoginRequest(req: Request, res: Response, next: NextFunction) {
     const body = req.body;
     const check = this.__validator.validate(
-      this.__validator.userLoginSchema,
+      ZodType.default.userLoginSchema,
       body
     );
     if (check) {
       next();
     } else {
       res.status(401).json({ message: "Wrong input format!" });
+    }
+  }
+
+  validateOrderRequest(req: Request, res: Response, next: NextFunction) {
+    const body = req.body;
+    const check = this.__validator.validate(
+      ZodType.default.orderInputSchema,
+      body
+    );
+    if (check) next();
+    else {
+      res.status(422).json({ message: "Wrong input" });
     }
   }
 }

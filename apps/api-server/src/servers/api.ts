@@ -16,9 +16,9 @@ export class ExpressApp {
     this.__app = express();
     this.__user_router = new UserRoute;
     this.__logger = Logger.getInstance();
+    this.__app.use(express.json());
     this.__app.use(cors());
     this.__app.use("/api/v1/user", this.__user_router.__router);
-    this.__app.use(express.json());
   }
 
   public listen(): void {

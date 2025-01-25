@@ -2,7 +2,6 @@ import Logger from "@repo/logger/src";
 import User from "./models/user";
 import Order from "./models/order";
 import * as ZodType from "@repo/type/src";
-import { number } from "prop-types";
 
 class DB {
   private static __user: Map<number, User> = new Map<number, User>();
@@ -55,7 +54,7 @@ class DB {
   }
 
   createOrder(data: ZodType.OrderType) {
-    const id = new Date().getTime();
+    const id = data.id;
     const newOrder = new Order(
       id,
       data.userId,

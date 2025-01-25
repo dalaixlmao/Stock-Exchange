@@ -15,6 +15,7 @@ class ZodSchema {
     quantity: zod.number(),
     type: zod.union([zod.literal("BUY"), zod.literal("SELL")]),
     orderType: zod.union([zod.literal("LIMIT"), zod.literal("MARKET")]),
+    market: zod.string()
   });
 
   validate<Type>(schema: zod.ZodType<Type>, object: Type) {

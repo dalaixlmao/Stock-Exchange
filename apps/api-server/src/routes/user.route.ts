@@ -1,5 +1,5 @@
 import RouterFactory from "./interface.route";
-import { Method, Route } from "../types";
+import { Method, Route } from "@repo/type/src";
 import { Router } from "express";
 import Logger from "@repo/logger/src";
 import UserController from "../controllers/user.controller";

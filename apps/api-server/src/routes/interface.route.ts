@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Route, Method } from "../types";
+import { Route, Method } from "@repo/type/src";
 import Logger from "@repo/logger/src";
 
 abstract class RouterFactory {

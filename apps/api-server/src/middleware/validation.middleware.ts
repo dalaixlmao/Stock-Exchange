@@ -7,6 +7,7 @@ class ValidationMiddleware {
     this.__validator = new ZodType.default();
     this.validateSignupRequest = this.validateSignupRequest.bind(this);
     this.validateLoginRequest = this.validateLoginRequest.bind(this);
+    this.validateOrderRequest = this.validateOrderRequest.bind(this);
   }
 
   validateSignupRequest(req: Request, res: Response, next: NextFunction) {

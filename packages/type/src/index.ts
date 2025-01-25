@@ -1,4 +1,5 @@
 import zod from "zod";
+import { NextFunction, Request, Response } from "express";
 
 class ZodSchema {
   static userSignupSchema = zod.object({
@@ -11,11 +12,10 @@ class ZodSchema {
 
   static orderInputSchema = zod.object({
     price: zod.number(),
-    userId: zod.number(),
     quantity: zod.number(),
     type: zod.union([zod.literal("BUY"), zod.literal("SELL")]),
     orderType: zod.union([zod.literal("LIMIT"), zod.literal("MARKET")]),
-    market: zod.string()
+    market: zod.string(),
   });
 
   validate<Type>(schema: zod.ZodType<Type>, object: Type) {
@@ -46,5 +46,41 @@ interface OrderType {
   market: string;
 }
 
+interface Route {
+  path: string;
+  method: Method;
+  functions: RestFunction[];
+}
+
+type RestFunction =
+  | ((req: Request, res: Response, next: NextFunction) => void)
+  | ((req: Request, res: Response, next: NextFunction) => Promise<void>)
+  | ((req: Request, res: Response) => void)
+  | ((req: Request, res: Response) => Promise<void>);
+
+
+declare global {
+  namespace Express {
+    interface Request {
+      user_id: number;
+    }
+  }
+}
+
+export enum Method {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  DELETE = "DELETE",
+}
 export default ZodSchema;
-export type { userLoginType, userSignupType, orderInputType, userType, OrderType };
+export type {
+  userLoginType,
+  userSignupType,
+  orderInputType,
+  userType,
+  OrderType,
+  Route,
+  RestFunction,
+};

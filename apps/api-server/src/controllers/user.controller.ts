@@ -23,7 +23,7 @@ class UserController {
       this.__logger.info("New user created with id " + id);
       res
         .status(200)
-        .json({ message: "New user created!", token: "Bearer" + token });
+        .json({ message: "New user created!", token: "Bearer " + token });
     } catch (error: any) {
       this.__logger.error(error.message);
       res.status(500).json({ message: error.message });
@@ -36,7 +36,7 @@ class UserController {
       const id = await this.__userService.login({ email, password });
       const token = jwt.sign({ id }, config.jwt_password);
       this.__logger.info("User logged in successfully with id " + id);
-      res.status(200).json({ message: "User loggedin successfully!", token: "Bearer" + token });
+      res.status(200).json({ message: "User loggedin successfully!", token: "Bearer " + token });
     } catch (error: any) {
       this.__logger.error(error.message);
       res.status(500).json({ message: error.message });

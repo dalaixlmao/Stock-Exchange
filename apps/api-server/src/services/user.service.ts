@@ -30,10 +30,14 @@ class UserService {
     }
 
     const check = await compare(data.password, data.password);
-    if(!check){
-        this.__logger.error("Wrong Password!");
+    if (!check) {
+      this.__logger.error("Wrong Password!");
     }
     return user;
+  }
+
+  validateUser(id: number) {
+    return this.__db.validateUser(id);
   }
 }
 

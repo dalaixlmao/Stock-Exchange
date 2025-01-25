@@ -3,11 +3,13 @@ import { Method, Route } from "../types";
 import { Request, Response, Router } from "express";
 import Logger from "@repo/logger/src";
 import UserController from "../controllers/user.controller";
+import ValidationMiddleware from "../middleware/validation.middleware";
 
 class UserRoute extends RouterFactory {
   private __routes: Route[];
   private __logger: Logger;
   private __user_controller: UserController;
+  private __validation_middleware: ValidationMiddleware;
   __router: Router;
 
   constructor() {
@@ -15,17 +17,24 @@ class UserRoute extends RouterFactory {
     this.__router = Router();
     this.__logger = Logger.getInstance();
     this.__user_controller = new UserController();
+    this.__validation_middleware = new ValidationMiddleware();
 
     this.__routes = [
       {
         path: "/signup",
         method: Method.POST,
-        functions: [this.__user_controller.signup],
+        functions: [
+          this.__validation_middleware.validateSignupRequest,
+          this.__user_controller.signup,
+        ],
       },
       {
         path: "/login",
         method: Method.POST,
-        functions: [this.__user_controller.login],
+        functions: [
+          this.__validation_middleware.validateLoginRequest,
+          this.__user_controller.login,
+        ],
       },
     ];
 
@@ -35,30 +44,12 @@ class UserRoute extends RouterFactory {
     });
   }
 
-  getRouter(){
+  getRouter() {
     return this.__router;
   }
 
   getRoutes() {
     return this.__routes;
-  }
-
-  APIFactory(route: Route): void {
-    switch (route.method) {
-      case Method.GET:
-        this.__router.get(route.path);
-      case Method.POST:
-        this.__router.post(route.path);
-      case Method.PUT:
-        this.__router.put(route.path);
-      case Method.DELETE:
-        this.__router.delete(route.path);
-      case Method.PATCH:
-        this.__router.patch(route.path);
-    }
-    this.__logger.info(
-      `New ${route.method.toString()} route API created, on ${route.path}`
-    );
   }
 }
 

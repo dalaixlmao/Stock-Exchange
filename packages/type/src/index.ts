@@ -1,15 +1,21 @@
 import zod from "zod";
 
 class ZodSchema {
-  userSignupSchema = zod.object({
+  static userSignupSchema = zod.object({
     name: zod.string(),
     email: zod.string().email(),
     password: zod.string().min(8),
   });
 
-  userLoginSchema = this.userSignupSchema.omit({ name: true });
+  static userLoginSchema = this.userSignupSchema.omit({ name: true });
 
-  orderSchema = zod.object({});
+  static orderInputSchema = zod.object({
+    price: zod.number(),
+    userId: zod.number(),
+    quantity: zod.number(),
+    type: zod.union([zod.literal("BUY"), zod.literal("SELL")]),
+    orderType: zod.union([zod.literal("LIMIT"), zod.literal("MARKET")]),
+  });
 
   validate<Type>(schema: zod.ZodType<Type>, object: Type) {
     const result = schema.safeParse(object);
@@ -17,10 +23,9 @@ class ZodSchema {
   }
 }
 
-const temp: ZodSchema = new ZodSchema();
-type userSignupType = zod.infer<typeof temp.userSignupSchema>;
-type userLoginType = zod.infer<typeof temp.userLoginSchema>;
-type orderType = zod.infer<typeof temp.orderSchema>;
+type userSignupType = zod.infer<typeof ZodSchema.userSignupSchema>;
+type userLoginType = zod.infer<typeof ZodSchema.userLoginSchema>;
+type orderInputType = zod.infer<typeof ZodSchema.orderInputSchema>;
 interface userType {
   id: number;
   name: string;
@@ -30,5 +35,15 @@ interface userType {
   balance: number;
 }
 
+interface OrderType {
+  id: number;
+  price: number;
+  userId: number;
+  quantity: number;
+  type: "BUY" | "SELL";
+  orderType: "LIMIT" | "MARKET";
+  market: string;
+}
+
 export default ZodSchema;
-export type { userLoginType, userSignupType, orderType, userType };
+export type { userLoginType, userSignupType, orderInputType, userType, OrderType };

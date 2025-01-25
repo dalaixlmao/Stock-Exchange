@@ -1,24 +1,27 @@
 import express from "express";
-
 import Logger from "@repo/logger/src";
 import cors from "cors";
 import UserRoute from "../routes/user.route";
+import OrderRoute from "../routes/order.route";
 import RouterFactory from "../routes/interface.route";
 
 export class ExpressApp {
   private __app: express.Application;
   private __logger: Logger;
   private __user_router: RouterFactory;
+  private __order_route: RouterFactory;
   private __port: number;
 
   constructor() {
     this.__port = 3002;
     this.__app = express();
-    this.__user_router = new UserRoute;
+    this.__user_router = new UserRoute();
+    this.__order_route = new OrderRoute();
     this.__logger = Logger.getInstance();
     this.__app.use(express.json());
     this.__app.use(cors());
     this.__app.use("/api/v1/user", this.__user_router.__router);
+    this.__app.use("/api/v1/order", this.__order_route.__router);
   }
 
   public listen(): void {

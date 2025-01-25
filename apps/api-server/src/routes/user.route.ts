@@ -1,6 +1,6 @@
 import RouterFactory from "./interface.route";
 import { Method, Route } from "../types";
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import Logger from "@repo/logger/src";
 import UserController from "../controllers/user.controller";
 import ValidationMiddleware from "../middleware/validation.middleware";

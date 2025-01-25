@@ -1,7 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtPayload, verify } from "jsonwebtoken";
-import config from "../config/env";
-import UserService from "../services/user.service";
 import * as ZodType from "@repo/type/src";
 class ValidationMiddleware {
   private __validator: ZodType.default;

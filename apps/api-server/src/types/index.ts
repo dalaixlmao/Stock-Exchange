@@ -1,4 +1,4 @@
-import { Application, NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 interface Route {
   path: string;
@@ -10,16 +10,14 @@ type RestFunction =
   | ((req: Request, res: Response, next: NextFunction) => void)
   | ((req: Request, res: Response, next: NextFunction) => Promise<void>)
   | ((req: Request, res: Response) => void)
-  | ((req: Request, res: Response) => Promise<void>)
-  
-  ;
+  | ((req: Request, res: Response) => Promise<void>);
 
 enum Method {
-  GET="GET",
-  POST="POST",
-  PUT="PUT",
-  PATCH="PATCH",
-  DELETE="DELETE",
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  DELETE = "DELETE",
 }
 
 declare global {
